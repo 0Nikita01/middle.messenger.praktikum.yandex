@@ -82,7 +82,7 @@ function navigate(page) {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => navigate('chats'));
+document.addEventListener('DOMContentLoaded', () => navigate('login'));
 
 document.addEventListener('click', (event) => {
     const page = event.target.getAttribute('page');
