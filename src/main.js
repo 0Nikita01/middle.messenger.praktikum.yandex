@@ -81,7 +81,6 @@ function navigate(page) {
     }
 }
 
-
 document.addEventListener('DOMContentLoaded', () => navigate('login'));
 
 document.addEventListener('click', (event) => {
