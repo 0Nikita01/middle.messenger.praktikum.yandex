@@ -1,0 +1,18 @@
+{{#> Form}}
+    <div class='message'>
+        <div class='message__attachment'>
+            {{> ContextMenu contextMenu}}
+            <div class='message__attachment_img'>
+                <img src='/icons/paper-clip.png' alt='' contextmenu='selectAttachment'>
+            </div>
+        </div>
+        <div class='message__input'>
+            {{> Input name='message' type='text' mod='_message' placeholder='Сообщение'}}
+        </div>
+        <div class='message__send'>
+            <div class='message__send_arrow'>
+                <img src='/icons/white-arrow.png' alt=''>
+            </div>
+        </div>
+    </div>
+{{/Form}}

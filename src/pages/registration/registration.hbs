@@ -1,0 +1,20 @@
+{{#> Modal type='auth' text='Регистрация'}}
+    {{#> Form}}
+        {{> Input label='Почта' type='email' name='mail' mod='_modal'}}
+        {{> Input label='Логин' type='text' name='login' mod='_modal'}}
+        {{> Input label='Имя' type='text' name='first-name' mod='_modal'}}
+        {{> Input label='Фамилия' type='text' name='second-name' mod='_modal'}}
+        {{> Input label='Телефон' type='tel' name='tel' mod='_modal'}}
+        {{> Input  label='Пароль' type='password' name='password' mod='_modal'}}
+        {{> Input   
+                label='Пароль (еще раз)' 
+                type='password' 
+                name='second-password' 
+                mod='_modal' 
+                errorLable='Пароли не совпадают' 
+                error='_error'
+        }}
+        {{> Button text='Зарегистрироваться' type='submit' page='chats' mod='_mg47'}}
+        {{> Button text='Войти' type='link' page='login'}}
+    {{/Form}}
+{{/Modal}}

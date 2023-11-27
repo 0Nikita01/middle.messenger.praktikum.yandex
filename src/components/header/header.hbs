@@ -1,0 +1,29 @@
+<div class='header'>
+    <div class='header__descr'>
+        <div class='header__descr-items'>
+            {{#if avatar}}
+                <div class='header__descr-item'>
+                    {{> Avatar avatar}}
+                </div>
+            {{/if}}
+            {{#if text}}
+                <div class='header__descr-item'>
+                    <div class='header__descr-text'>
+                            {{text}}
+                    </div>     
+                </div>
+            {{/if}}
+        </div>
+    </div>
+    {{#if menu}}
+        <div class='header__menu'>
+            <div class='menu__items' contextmenu='changeUser'>
+                <div class='menu__item'></div>
+                <div class='menu__item'></div>
+                <div class='menu__item'></div>
+            </div>
+            {{> ContextMenu contextMenu}}
+        </div>
+    {{/if}}
+</div>
+

@@ -1,0 +1,52 @@
+.avatar 
+    display: flex
+    align-items: center
+    position: relative
+
+    &_small
+        width: 35px
+        height: 35px
+
+    &_medium
+        width: 47px
+        height: 47px
+    &_big
+        width: 100px
+        height: 100px
+        position: relative
+
+        &_inner
+            width: 100%
+            height: 100%
+            position: relative
+            overflow: hidden
+            border-radius: 50%
+
+            &::before
+                content: 'Редактировать'
+                text-align: center
+                line-height: 92px
+                font-size: 14px
+                color: #fff
+                background: #000
+                left: 0
+                top: 0
+                opacity: 0
+                width: 100%
+                height: 100%
+                position: absolute
+                transition: opacity .2s
+
+            &:hover::before
+                    opacity: 0.4
+
+    &__img
+        
+        &_border
+            position: absolute
+            left: 0
+            top: 0
+            width: 100%
+            height: 100%
+            border-radius: 50%
+            border: 2px solid rgba(0, 0, 0, 0.1)

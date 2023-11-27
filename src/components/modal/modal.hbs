@@ -1,0 +1,6 @@
+<div class='modal{{#if hidden}} modal_hidden{{/if}} {{#if mode}}modal_{{mode}}{{/if}}'>
+    <div class='modal__container modal__{{type}}'>
+        <div class='modal__{{type}}__header'>{{text}}</div>
+        {{> @partial-block}}
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class='profile-link'>
+    {{> Avatar size='_small'}}
+    <div class='profile-link__wrapper'>
+        <div class='profile-link__name'>
+            <div>{{name}}</div>
+        </div>
+        <div class='profile-link__button'>
+            {{#if showProfile}}
+                {{> Button type='link button__link_black' text='Профиль >' page='profile' mod='_mg0'}}
+            {{else}}
+                {{> Button type='link button__link_black' text='< Назад' page='chats' mod='_mg0'}}
+            {{/if}}
+        </div>
+    </div>
+</div>

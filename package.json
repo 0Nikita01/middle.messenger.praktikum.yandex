@@ -1,0 +1,22 @@
+{
+  "name": "messenger",
+  "private": true,
+  "engines": {
+    "node": ">=18.17.1",
+    "npm": "9.6.7"
+  },
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "ejs": "^3.1.9",
+    "engine-version": "^1.0.2",
+    "express": "^4.18.2",
+    "handlebars": "^4.7.8",
+    "sass": "^1.66.1",
+    "vite": "^4.4.5"
+  }
+}
