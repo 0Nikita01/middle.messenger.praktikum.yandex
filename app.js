@@ -25,5 +25,5 @@ app.get('/500', function(req, res){
 });
 
 app.listen(PORT, function () {
-  console.log(`${PORT}!`);
+  console.log(`${PORT}`);
 });

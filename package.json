@@ -8,7 +8,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "start": "vite build",
+    "start": "vite build && node app.js",
     "preview": "vite preview"
   },
   "devDependencies": {
