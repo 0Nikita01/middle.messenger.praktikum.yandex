@@ -7,7 +7,7 @@ let chatsOptions = {
     header: {
         text: 'User',
         menu: 'dots',
-        avatar: {src: '/', size:'_small'},
+        avatar: {src: '/icons/avatar.png', size:'_small'},
         contextMenu: {
             type: 'header',
             items: [
