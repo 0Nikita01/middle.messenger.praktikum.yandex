@@ -1,0 +1,46 @@
+.label
+    display: block
+
+    &_modal
+        display: block
+        font-size: 13px
+        color: #999
+        padding-bottom: 15px
+
+.input
+    width: 100%
+    outline: none
+        
+    &_modal
+        display: block
+        padding: 5px 0 5px 0
+        font-size: 16px
+        border: none
+        border-bottom: 1px solid #3369F3
+        outline: none
+
+    &__label
+        display: none
+        &_error
+            display: block
+            color: #ff0000
+
+    &_search
+        font-size: 15px
+        padding: 5px 20px
+        background: #EFEFEF no-repeat left center url('/icons/search.png')
+        border-radius: 5px
+        border: 1px solid #EFEFEF
+        
+        &::placeholder
+            text-align: center
+    
+    &_message
+        font-size: 15px
+        padding: 10px 20px
+        background: #EFEFEF
+        border-radius: 30px
+        border: 1px solid #EFEFEF
+
+        &_file
+            border: none

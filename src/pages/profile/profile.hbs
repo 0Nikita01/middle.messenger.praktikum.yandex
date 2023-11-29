@@ -1,0 +1,68 @@
+{{#> Content}}
+    {{#> SideBar}}
+        {{> ProfileLink src='/' name='Никита'}}
+        {{> ChatsBlock chatsContext}}
+    {{/SideBar}}
+    {{#> Container alignTop=true}}
+        {{> Header header}}
+        <div class='profile__wrapper'>
+            <div class='profile__container'>
+                {{#> Form}}
+                    <div class='profile__info'>
+                        {{> Avatar name='avatar' src='/icons/avatar.png' size='_big'}}
+                        <div class='profile__info__inputs profile__info__inputs_main'>
+                            {{> Input type='text' name='first_name' value='Никита' mod='-main' placeholder='Имя'}}
+                            {{> Input type='text' name='second_name' value='Масаев' mod='-main' placeholder='Фамилия'}}
+                        </div>
+                    </div>
+                    <div class='profile__info'>
+                        <div class='profile__info__inputs profile__info__inputs_secondary'>
+                            {{> Input 
+                                label='Электронная почта' 
+                                type='email' 
+                                name='email' 
+                                value='test@mail.ru' 
+                                mod='-secondary'
+                            }}
+                            {{> Input 
+                                label='Логин' 
+                                type='text' 
+                                name='login' 
+                                value='admin' 
+                                mod='-secondary '
+                            }}
+                            {{> Input 
+                                label='Имя в чате' 
+                                type='text' 
+                                name='display_name' 
+                                value='admin' 
+                                mod='-secondary '
+                            }}
+                            {{> Input 
+                                label='Телефон' 
+                                type='tel' 
+                                name='phone' 
+                                value='+7 (909) 967 30 30' 
+                                mod='-secondary '
+                            }}
+                            {{> Input 
+                                label='Дополнительный email' 
+                                type='text' 
+                                name='additional_email' 
+                                value='second_mail@mail.ru' 
+                                mod='-secondary '
+                            }}
+                        </div>
+                    </div>
+                    <div class='profile__info'>
+                        <div class='profile__info__buttons'>
+                            {{> Button type='link' text='Сохранить' mod='_mg0'}}
+                            {{> Button type='link' text='Изменить пароль' page='editPassword' mod='_mg0'}}
+                            {{> Button type='link' text='Выйти' page='login' mod='_mg0'}}
+                        </div>
+                    </div>
+                {{/Form}}
+            </div>
+        </div>
+    {{/Container}}
+{{/Content}}

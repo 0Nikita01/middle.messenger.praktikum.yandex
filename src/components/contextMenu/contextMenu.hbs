@@ -1,0 +1,12 @@
+<div class='ContextMenu ContextMenu_{{type}} ContextMenu_{{type}}_hidden'>
+    <div class='ContextMenu__items ContextMenu_{{type}}'>
+        {{#each items}}
+            <div class='ContextMenu__item ContextMenu_{{type}}' current-modal='{{this.modal}}'>
+                <div class='ContextMenu__img ContextMenu_{{type}}__img' current-modal='{{this.modal}}'>
+                    <img src='{{this.img}}' alt='' {{#if mod}} class='ContextMenu__img{{mod}} ContextMenu_{{type}}'{{/if}} >
+                </div>
+                <div class='ContextMenu__text ContextMenu_{{type}}' current-modal='{{this.modal}}'>{{this.text}}</div>
+            </div>
+        {{/each}}
+    </div>
+</div>

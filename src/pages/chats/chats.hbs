@@ -1,0 +1,36 @@
+{{#> Modal modalContext}}
+    {{#> Form modalContext changeUser=changeUser changeAttachment=changeAttachment}}
+        {{#if changeUser.add}}
+            {{> Input label='Логин' type='text' name='login' mod='_modal'}}
+            {{> Button text='Добавить' type='submit' page='chats' mod='_mg0'}}
+        {{else if changeUser.del}}
+            {{> Button text='Отмена' type='submit' page='chats' mod='_mg47'}}
+            {{> Button text='Удалить' type='link' page='chats'}}
+        {{/if}}
+
+        {{#if changeAttachment.pic}}
+            {{> Input label='' type='file' name='picture' mod='_modal_file'}}
+            {{> Button text='Загрузить' type='submit' page='chats' mod='_mg47'}}
+        {{/if}}
+        {{#if changeAttachment.file}}
+            {{> Input label='' type='file' name='file' mod='_modal_file'}}
+            {{> Button text='Загрузить' type='submit' page='chats' mod='_mg47'}}
+        {{/if}}
+        {{#if changeAttachment.loc}}
+            {{> Button text='Выбрать' type='submit' page='chats' mod='_mg47'}}
+        {{/if}}
+    {{/Form}}
+{{/Modal}}
+{{#> Content}}
+    {{#> SideBar}}
+        {{> ProfileLink src='/' name='Никита' showProfile='profile'}}
+        {{> ChatsBlock chatsContext}}
+    {{/SideBar}}
+    {{#> Container}}
+        {{> Header header}}
+        <div class='main'>
+            <div class='stub'>{{stubContainer}}</div>
+            {{> Message attachContext}}
+        </div>
+    {{/Container}}
+{{/Content}}

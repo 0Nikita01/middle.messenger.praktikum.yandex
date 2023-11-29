@@ -1,0 +1,10 @@
+<div class='chats'>
+    <div class='search-wrapper'>
+        {{#> Form}}
+            {{> Input name='message' type='text' mod='_search' placeholder='Поиск'}}
+        {{/Form}}
+    </div>
+    <div class='chats_center'>
+        {{stubChats}}
+    </div>
+</div>

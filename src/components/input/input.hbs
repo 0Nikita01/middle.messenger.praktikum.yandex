@@ -1,0 +1,18 @@
+<label class='label {{#if mod}}label{{mod}}{{/if}}'>
+    {{label}}
+    
+    <input 
+        class='input {{#if mod}}input{{mod}}{{/if}}' 
+        type='{{type}}' 
+        name='{{name}}' 
+        {{#if placeholder}}placeholder='{{placeholder}}'{{/if}}
+        {{#if value}}value='{{value}}'{{/if}}
+        autocomplete='off'
+    >
+    {{#if img}}
+        <div class='input{{img}}'></div>
+    {{/if}}
+    {{#if error}}
+        <div class='input__label{{error}}'>{{errorLable}}</div>
+    {{/if}}
+</label>

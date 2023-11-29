@@ -1,0 +1,8 @@
+{{#> Modal type='auth' text='Вход'}}
+    {{#> Form}}
+        {{> Input label='Логин' type='text' name='login' mod='_modal'}}
+        {{> Input label='Пароль' type='password' name='password' mod='_modal'}}
+        {{> Button text='Войти' type='submit' page='chats' mod='_mg145'}}
+        {{> Button text='Нет аккаунта?' type='link' page='registration'}}
+    {{/Form}}
+{{/Modal}}
