@@ -1,8 +1,20 @@
 {{#> Modal type='auth' text='Вход'}}
-    {{#> Form}}
-        {{> Input label='Логин' type='text' name='login' mod='_modal'}}
-        {{> Input label='Пароль' type='password' name='password' mod='_modal'}}
-        {{> Button text='Войти' type='submit' page='chats' mod='_mg145'}}
-        {{> Button text='Нет аккаунта?' type='link' page='registration'}}
+    {{# Form onSubmit=this.onSubmit}}
+        {{#each inputs}}
+            {{{ Input   
+                label=this.label 
+                type=this.type 
+                name=this.name 
+                value=this.value 
+                mod=this.mod 
+                onClick=this.onClick 
+                onBlur=this.onBlur
+                error=this.error
+                errorLabel=this.errorLabel
+            }}}
+        {{/each}}
+        {{#each buttons}}
+            {{{ Button text=this.text type=this.type mod=this.mod onClick=this.onClick}}}
+        {{/each}}
     {{/Form}}
 {{/Modal}}

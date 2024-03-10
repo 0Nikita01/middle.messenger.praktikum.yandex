@@ -11,6 +11,8 @@ https://www.figma.com/file/P7qgNSrshv4b5dzxlC0OL3/Messenger
 - `npm install` — установка стабильной версии,
 - `npm run dev` — запуск версии для разработчика,
 - `npm run start` — сборка и запуск стабильной версии.
+- `npm run eslint` - запуск Eslint
+- `npm run stylelint` - запуск Stylelint
 
 ## Навигация
 

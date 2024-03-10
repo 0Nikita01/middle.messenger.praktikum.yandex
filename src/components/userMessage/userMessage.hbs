@@ -1,0 +1,13 @@
+<div class="message__container message_{{this.type}}">
+    <div class="message__text message__text_{{this.type}}">
+        {{this.message}}
+    </div> 
+    <div class="message__time message__time_{{this.type}}"><span>{{this.time}}</span></div>
+    {{#if this.status}}
+        <div class="message__status">
+            <div class="message__status__img">
+                <img class='avatar__img' src='/icons/{{this.status}}.png' alt='статус'>
+            </div>
+        </div>
+    {{/if}}
+</div>

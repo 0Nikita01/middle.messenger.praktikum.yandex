@@ -1,0 +1,7 @@
+**/*.min.js
+/node_modules 
+/dist
+/public
+vite.config.js
+vite-plugin-handelbars-precompile.ts
+app.js
