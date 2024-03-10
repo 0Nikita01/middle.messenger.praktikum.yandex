@@ -1,0 +1,12 @@
+<div class="feed__container">
+    <div class="feed__messages">
+        {{#each messages}}
+            {{{UserMessage 
+                message=this.message
+                time=this.time
+                type=this.type
+                status=this.status
+            }}}
+        {{/each}}
+    </div>
+</div>

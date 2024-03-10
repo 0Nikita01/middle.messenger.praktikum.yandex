@@ -3,13 +3,13 @@
         <div class='header__descr-items'>
             {{#if avatar}}
                 <div class='header__descr-item'>
-                    {{> Avatar avatar}}
+                    {{{ Avatar src=this.avatar size='_small'}}}
                 </div>
             {{/if}}
             {{#if text}}
                 <div class='header__descr-item'>
                     <div class='header__descr-text'>
-                            {{text}}
+                            {{this.text}}
                     </div>     
                 </div>
             {{/if}}
@@ -22,7 +22,7 @@
                 <div class='menu__item'></div>
                 <div class='menu__item'></div>
             </div>
-            {{> ContextMenu contextMenu}}
+            {{{ ContextMenu isHide=this.hideContext type='header' items=this.menuItems onClick=this.onClick}}}
         </div>
     {{/if}}
 </div>

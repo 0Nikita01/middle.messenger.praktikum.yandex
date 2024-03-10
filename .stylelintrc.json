@@ -1,0 +1,6 @@
+{ 
+    "customSyntax": "postcss-sass",
+    "extends": [
+        "stylelint-config-standard"
+    ]
+}

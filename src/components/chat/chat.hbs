@@ -1,0 +1,15 @@
+<div class="chats__chat">
+    <div class="chat__photo">
+        {{{ Avatar src=this.avatar size='_medium'}}}
+    </div>
+    <div class="chat__main">
+        <div class="chat__name">{{this.name}}</div>
+        <div class="chat__preview">{{this.preview}}</div>
+    </div>
+    <div class="chat__info">
+        <div class="chat__time">{{this.lastTime}}</div>
+        {{#if this.counter}}
+            <div class="chat__counter"><span>{{this.counter}}</span></div>
+        {{/if}}
+    </div>
+</div>
