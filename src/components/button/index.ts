@@ -3,16 +3,7 @@ import './button.sass';
 import Block from '../../utils/Block';
 import template from './button.hbs';
 
-interface ButtonProps {
-  text: string
-  type: string,
-  mod?: string,
-  page?: string
-  onClick?: () => void;
-  events: {
-    click: () => void
-  }
-}
+type ButtonProps = Record<string, unknown>;
 
 export default class Button extends Block {
   constructor(props: ButtonProps) {

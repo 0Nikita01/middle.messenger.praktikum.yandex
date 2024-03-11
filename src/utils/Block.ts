@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import EventBus from './EventBus';
 
 /* eslint class-methods-use-this: 0 */
-class Block {
+class Block<Props extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -12,7 +12,7 @@ class Block {
 
   public id = nanoid(6);
 
-  protected props: any;
+  protected props: Props;
 
   protected refs: Record<string, Block> = {};
 
@@ -28,13 +28,13 @@ class Block {
    *
    * @returns {void}
    */
-  constructor(propsWithChildren: any = {}) {
+  constructor(propsWithChildren: Props) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
     this.children = children;
-    this.props = this._makePropsProxy(props);
+    this.props = this._makePropsProxy(props as Props);
 
     this.eventBus = () => eventBus;
 
@@ -43,7 +43,7 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _getChildrenAndProps(childrenAndProps: any) {
+  _getChildrenAndProps(childrenAndProps: Props) {
     const props: Record<string, any> = {};
     const children: Record<string, Block> = {};
 
@@ -59,7 +59,7 @@ class Block {
   }
 
   _addEvents() {
-    const { events = {} } = this.props as { events: Record<string, () => void> };
+    const { events = {} } = this.props;
     Object.keys(events).forEach((eventName) => {
       if (eventName === 'blur') {
         this._element?.addEventListener(eventName, events[eventName], true);
@@ -69,7 +69,7 @@ class Block {
   }
 
   _removeEvents() {
-    const { events = {} } = this.props as { events: Record<string, () => void> };
+    const { events = {} } = this.props;
     Object.keys(events).forEach((eventName) => {
       this._element?.removeEventListener(eventName, events[eventName]);
     });
@@ -104,17 +104,17 @@ class Block {
     Object.values(this.children).forEach((child) => child.dispatchComponentDidMount());
   }
 
-  private _componentDidUpdate(oldProps?: any, newProps?: any) {
+  private _componentDidUpdate(oldProps?: Props, newProps?: Props) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate(oldProps?: any, newProps?: any) {
+  protected componentDidUpdate(oldProps?: Props, newProps?: Props) {
     return oldProps !== newProps;
   }
 
-  setProps = (nextProps: any) => {
+  setProps = (nextProps: Props) => {
     if (!nextProps) {
       return;
     }
@@ -164,18 +164,18 @@ class Block {
     return this.element;
   }
 
-  _makePropsProxy(props: any) {
+  _makePropsProxy(props: Props) {
     const self = this;
 
     return new Proxy(props, {
       get(target, prop) {
-        const value = target[prop];
+        const value = target[prop as keyof typeof target];
         return typeof value === 'function' ? value.bind(target) : value;
       },
       set(target, prop, value) {
         const oldTarget = { ...target };
 
-        target[prop] = value;
+        target[prop as keyof typeof target] = value;
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },

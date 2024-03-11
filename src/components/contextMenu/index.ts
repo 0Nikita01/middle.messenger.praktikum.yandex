@@ -1,13 +1,7 @@
 import Block from '../../utils/Block';
 import template from './contextMenu.hbs';
 
-interface ContextMenuProps {
-  items: Array<any>,
-  onClick?: () => void,
-  events: {
-    click: () => void
-  }
-}
+type ContextMenuProps = Record<string, unknown>;
 
 export default class ContextMenu extends Block {
   constructor(props: ContextMenuProps) {

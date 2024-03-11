@@ -1,9 +1,7 @@
 import Block from '../../utils/Block';
 import template from './form.hbs';
 
-interface FromProps {
-  onSubmit: () => void
-}
+type FromProps = Record<string, any>;
 
 export default class Form extends Block {
   constructor(props: FromProps) {
