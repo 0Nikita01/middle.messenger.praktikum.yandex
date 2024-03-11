@@ -1,36 +1,27 @@
-{{#> Modal modalContext}}
-    {{#> Form modalContext changeUser=changeUser changeAttachment=changeAttachment}}
-        {{#if changeUser.add}}
-            {{> Input label='Логин' type='text' name='login' mod='_modal'}}
-            {{> Button text='Добавить' type='submit' page='chats' mod='_mg0'}}
-        {{else if changeUser.del}}
-            {{> Button text='Отмена' type='submit' page='chats' mod='_mg47'}}
-            {{> Button text='Удалить' type='link' page='chats'}}
-        {{/if}}
+<div class="wrapper">
+    {{#> Modal text=this.modalText type=this.modalType hidden=this.isModalHide mode=this.modalMod}}
+        {{# Form}}
+            {{#each inputs}}
+                {{{ Input label=this.label type=this.type name=this.name mod=this.mod onClick=this.onClick }}}
+            {{/each}}
+            {{#each buttons}}
+                {{{ Button text=this.text type=this.type mod=this.mod onClick=this.onClick}}}
+            {{/each}}
+        {{/Form}}
+    {{/Modal}}
+    {{#> Content}}
+        {{#> SideBar}}
+            {{{ ProfileLink src='/' name='Никита' showProfile='profile' onClick=this.openProfile}}}
+            {{# ChatsBlock}}
+            {{/ChatsBlock}}
+        {{/SideBar}}
+        {{#> Container}}
+            {{{ Header openModal=this.openModal avatar='/icons/avatar.png' text='User' menu='dots'}}}
+            <div class='main'>
+                {{# Feed}}{{/Feed}}
+                {{{ Message openModal=this.openModal}}}
+            </div>
+        {{/Container}}
+    {{/Content}}
+</div>
 
-        {{#if changeAttachment.pic}}
-            {{> Input label='' type='file' name='picture' mod='_modal_file'}}
-            {{> Button text='Загрузить' type='submit' page='chats' mod='_mg47'}}
-        {{/if}}
-        {{#if changeAttachment.file}}
-            {{> Input label='' type='file' name='file' mod='_modal_file'}}
-            {{> Button text='Загрузить' type='submit' page='chats' mod='_mg47'}}
-        {{/if}}
-        {{#if changeAttachment.loc}}
-            {{> Button text='Выбрать' type='submit' page='chats' mod='_mg47'}}
-        {{/if}}
-    {{/Form}}
-{{/Modal}}
-{{#> Content}}
-    {{#> SideBar}}
-        {{> ProfileLink src='/' name='Никита' showProfile='profile'}}
-        {{> ChatsBlock chatsContext}}
-    {{/SideBar}}
-    {{#> Container}}
-        {{> Header header}}
-        <div class='main'>
-            <div class='stub'>{{stubContainer}}</div>
-            {{> Message attachContext}}
-        </div>
-    {{/Container}}
-{{/Content}}

@@ -1,10 +1,18 @@
 <div class='chats'>
     <div class='search-wrapper'>
         {{#> Form}}
-            {{> Input name='message' type='text' mod='_search' placeholder='Поиск'}}
+            {{{ Input name='message' type='text' mod='_search' placeholder='Поиск'}}}
         {{/Form}}
     </div>
-    <div class='chats_center'>
-        {{stubChats}}
+    <div class='chats__container'>
+        {{#each chatsList}}
+            {{{Chat 
+                name=this.name
+                preview=this.preview
+                avatar=this.avatarSrc
+                lastTime=this.time
+                counter=this.count
+            }}}
+        {{/each}}
     </div>
 </div>
