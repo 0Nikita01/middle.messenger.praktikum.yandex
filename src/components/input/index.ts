@@ -1,23 +1,7 @@
 import Block from '../../utils/Block';
 import template from './input.hbs';
 
-interface InputProps {
-  mod?: string,
-  label: string,
-  type: string,
-  name: string,
-  placeholder?: string,
-  value?: string,
-  img?: string,
-  error?: string,
-  errorLabel?: string,
-  onClick?: () => void;
-  onBlur?: (event: any) => void;
-  events: {
-    click: () => void;
-    focusout: () => void
-  };
-}
+type InputProps = Record<string, unknown>;
 
 export default class Input extends Block {
   constructor(props: InputProps) {

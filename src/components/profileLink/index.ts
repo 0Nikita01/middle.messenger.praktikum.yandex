@@ -1,12 +1,7 @@
 import Block from '../../utils/Block';
 import template from './profilelink.hbs';
 
-interface ProfileLinkProps {
-  src: string,
-  name: string,
-  showProfile: string,
-  onClick?: () => void;
-}
+type ProfileLinkProps = Record<string, unknown>;
 
 export default class ProfileLink extends Block {
   constructor(props: ProfileLinkProps) {

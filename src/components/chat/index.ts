@@ -1,13 +1,7 @@
 import Block from '../../utils/Block';
 import template from './chat.hbs';
 
-interface ChatProps {
-  name: string,
-  preview: string,
-  avatar: string,
-  lastTime: string,
-  counter: number
-}
+type ChatProps = Record<string, string | number>;
 
 export default class Chat extends Block {
   constructor(props: ChatProps) {

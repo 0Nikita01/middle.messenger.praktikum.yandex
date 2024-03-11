@@ -5,6 +5,10 @@ const METHODS = {
   DELETE: 'DELETE',
 };
 
+type Options = { data?: {}, timeout?: number };
+
+type HTTPMethod = (url: string, options?: Options) => Promise<unknown>;
+
 function queryStringify(data: {} | undefined): string | null {
   if (!data) return null;
 
@@ -15,7 +19,7 @@ function queryStringify(data: {} | undefined): string | null {
 
 /* eslint @typescript-eslint/no-unused-vars: 0 */
 class HTTPTransport {
-  get = (url: string, options: { data?: {}, timeout?: number } = {}) => {
+  get: HTTPMethod = (url, options = {}) => (
     this.request(
       url,
       {
@@ -24,10 +28,10 @@ class HTTPTransport {
         method: METHODS.GET,
       },
       options?.timeout,
-    );
-  };
+    )
+  );
 
-  post = (url: string, options: { data: {}, timeout?: number }) => {
+  post: HTTPMethod = (url, options = {}) => (
     this.request(
       url,
       {
@@ -36,10 +40,10 @@ class HTTPTransport {
         method: METHODS.POST,
       },
       options?.timeout,
-    );
-  };
+    )
+  );
 
-  put = (url: string, options: { data: {}, timeout?: number }) => {
+  put: HTTPMethod = (url, options = {}) => (
     this.request(
       url,
       {
@@ -48,25 +52,26 @@ class HTTPTransport {
         method: METHODS.PUT,
       },
       options?.timeout,
-    );
-  };
+    )
+  );
 
-  delete = (url: string, options: { timeout?: number }) => {
+  delete: HTTPMethod = (url, options = {}) => (
     this.request(
       url,
       {
         ...options,
+        data: null,
         method: METHODS.DELETE,
       },
       options?.timeout,
-    );
-  };
+    )
+  );
 
   request = (
     url: string,
     options: { method: string, data?: string | null } = { method: METHODS.GET },
     timeout = 5000,
-  ) => {
+  ): Promise<unknown> => {
     const { method, data } = options;
 
     if (method === METHODS.GET && data) {

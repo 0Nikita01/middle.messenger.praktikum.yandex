@@ -1,12 +1,7 @@
 import Block from '../../utils/Block';
 import template from './avatar.hbs';
 
-interface AvatarProps {
-  src: string,
-  name: string,
-  size: string,
-
-}
+type AvatarProps = Record<string, string>;
 
 export default class Avatar extends Block {
   constructor(props: AvatarProps) {
