@@ -11,7 +11,7 @@
     {{/Modal}}
     {{#> Content}}
         {{#> SideBar}}
-            {{{ ProfileLink src='/' name='Никита' showProfile='profile' onClick=this.openProfile}}}
+            {{{ ProfileLink src='/' name=this.user.first_name showProfile='profile' onClick=this.openProfile}}}
             {{# ChatsBlock}}
             {{/ChatsBlock}}
         {{/SideBar}}

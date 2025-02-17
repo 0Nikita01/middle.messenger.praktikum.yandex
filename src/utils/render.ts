@@ -3,8 +3,9 @@ import RegisterPage from '../pages/registration';
 import ChatsPage from '../pages/chats';
 import Profile from '../pages/profile';
 import EditPassword from '../pages/editPassword';
+import Block from './Block';
 
-const ROUTES = {
+export const ROUTES = {
   login: LoginPage,
   signup: RegisterPage,
   chats: ChatsPage,
@@ -12,16 +13,14 @@ const ROUTES = {
   editPassword: EditPassword,
 };
 
-export default function render(name: keyof typeof ROUTES) {
-  const root = document.querySelector('#root')!;
+export default function render<B extends Block>(name: string, block: B): void {
+  const root = document.querySelector(name)!;
 
   root.innerHTML = '';
 
-  const Page = ROUTES[name];
+  const Page = block;
 
-  const page = new Page();
+  root.append(Page.getContent()!);
 
-  root.append(page.getContent()!);
-
-  page.dispatchComponentDidMount();
+  Page.dispatchComponentDidMount();
 }

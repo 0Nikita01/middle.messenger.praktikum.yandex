@@ -1,6 +1,6 @@
 {{#> Content}}
     {{#> SideBar}}
-        {{{ ProfileLink src='/' name='Никита' onClick=this.openChats}}}
+        {{{ ProfileLink src='/' name=this.user.first_name onClick=this.openChats}}}
         {{#> ChatsBlock}}
         {{/ChatsBlock}}
     {{/SideBar}}

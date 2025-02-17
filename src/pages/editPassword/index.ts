@@ -2,6 +2,9 @@ import Block from '../../utils/Block';
 import template from './editPassword.hbs';
 import render from '../../utils/render';
 import { checkingFieldValidation, getValidFormData } from '../../utils/inputsValidate';
+import ChatsController from '../../controllers/ChatController';
+import SettingsController from '../../controllers/SettingsController';
+import { userData } from '../../api/UserApi';
 
 export default class EditPassword extends Block {
   constructor() {
@@ -66,6 +69,7 @@ export default class EditPassword extends Block {
 
       openChats: (event: any) => {
         this.openPage(event, 'chats');
+        this.ChatsController.chats()
       },
 
       onSubmit: (event: any) => {
@@ -77,20 +81,26 @@ export default class EditPassword extends Block {
           'oldPassword',
           'newPassword',
         ];
-        const data = getValidFormData(event, ...names);
+        const data = getValidFormData<userData>(event, ...names);
 
         if (data && data.newPassword === confirmPassword) {
           console.log(data);
+
+          SettingsController.updatePassword(data);
         }
-        this.openPage(event, 'profile');
+
+        SettingsController.userSettings();
+        
       },
     });
   }
 
+  ChatsController = new ChatsController()
+
   openPage(event: any, page: string) { /* eslint class-methods-use-this: 0 */
     event.preventDefault();
     event.stopImmediatePropagation();
-    render(page as 'profile' | 'chats');
+    //render(page as 'profile' | 'chats');
   }
 
   render() {

@@ -2,6 +2,8 @@ import Block from '../../utils/Block';
 import template from './login.hbs';
 import render from '../../utils/render';
 import { getValidFormData, checkingFieldValidation } from '../../utils/inputsValidate';
+import AuthController from '../../controllers/AuthController';
+import { signInData } from '../../api/AuthApi';
 
 export default class LoginPage extends Block {
   constructor() {
@@ -46,7 +48,8 @@ export default class LoginPage extends Block {
           onClick: (event: any) => {
             event.preventDefault();
             event.stopImmediatePropagation();
-            render('signup');
+            //render('signup');
+            AuthController.switchToSignUp();
           },
         },
       ],
@@ -57,14 +60,17 @@ export default class LoginPage extends Block {
           'login',
           'password',
         ];
-        const data = getValidFormData(event, ...names);
+        const data = getValidFormData<signInData>(event, ...names);
 
         if (data) {
           console.log(data);
+          AuthController.login(data);
         }
-        render('chats');
+        //this.AuthController.login(data);
+        //render('chats');
       },
     });
+
   }
 
   render() {

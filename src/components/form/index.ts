@@ -8,11 +8,12 @@ export default class Form extends Block {
     super({
       events: {
         submit: props.onSubmit,
-      },
+      }
     });
   }
 
   render() {
+    
     return this.compile(template, this.props);
   }
 }

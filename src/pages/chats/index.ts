@@ -1,8 +1,11 @@
 import Block from '../../utils/Block';
 import template from './chats.hbs';
-import render from '../../utils/render';
+import ChatsController from '../../controllers/ChatController';
+import SettingsController from '../../controllers/SettingsController';
+import AuthController from '../../controllers/AuthController';
+import { connect } from '../../utils/Store';
 
-export default class ChatsPage extends Block {
+class ChatsPage extends Block {
   constructor() {
     super({
       modalText: '',
@@ -18,9 +21,22 @@ export default class ChatsPage extends Block {
       openProfile: (event: any) => {
         event.preventDefault();
         event.stopImmediatePropagation();
-        render('profile');
+
+        SettingsController.userSettings();
+
+        //render('profile');
       },
     });
+  }
+
+  ChatsController = new ChatsController();
+
+  init(): void {
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      this.setProps({user: JSON.parse(user)});
+    }
   }
 
   getNewProps(modalType: string): typeof this.props {
@@ -142,6 +158,9 @@ export default class ChatsPage extends Block {
   }
 
   render() {
+    //console.log('render chatsPage');
     return this.compile(template, this.props);
   }
 }
+
+export default ChatsPage;

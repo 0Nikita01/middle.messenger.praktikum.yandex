@@ -1,8 +1,9 @@
 import Block from '../../utils/Block';
 import template from './registration.hbs';
 import render from '../../utils/render';
-import { getValidFormData, checkingFieldValidation } from '../../utils/inputsValidate';
-
+import { getValidFormData, checkingFieldValidation} from '../../utils/inputsValidate';
+import AuthController from '../../controllers/AuthController';
+import { signUpData } from '../../api/AuthApi';
 export default class RegisterPage extends Block {
   constructor() {
     super({
@@ -100,7 +101,8 @@ export default class RegisterPage extends Block {
           onClick: (event: any) => {
             event.preventDefault();
             event.stopImmediatePropagation();
-            render('login');
+            AuthController.switchToSignIn();
+            //render('login');
           },
         },
       ],
@@ -116,12 +118,14 @@ export default class RegisterPage extends Block {
           'phone',
           'password',
         ];
-        const data = getValidFormData(event, ...names);
+        const data = getValidFormData<signUpData>(event, ...names);
 
         if (data) {
-          console.log(data);
+          //console.log(data);
+          AuthController.regester(data);
         }
-        render('chats');
+        //render('chats');
+        
       },
     });
   }

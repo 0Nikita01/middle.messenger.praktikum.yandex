@@ -7,7 +7,7 @@ const METHODS = {
 
 type Options = { data?: {}, timeout?: number };
 
-type HTTPMethod = (url: string, options?: Options) => Promise<unknown>;
+type HTTPMethod = <Response>(url: string, options?: Options) => Promise<Response>;
 
 function queryStringify(data: {} | undefined): string | null {
   if (!data) return null;
@@ -18,12 +18,18 @@ function queryStringify(data: {} | undefined): string | null {
 }
 
 /* eslint @typescript-eslint/no-unused-vars: 0 */
-class HTTPTransport {
-  get: HTTPMethod = (url, options = {}) => (
+export default class HTTPTransport {
+  private apiURL = 'https://ya-praktikum.tech/api/v2';
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = `${this.apiURL}${endpoint}`;
+  }
+
+  get: HTTPMethod = (url = '/', options = {}) => (
     this.request(
-      url,
+      this.endpoint + url,
       {
-        ...options,
         data: queryStringify(options?.data),
         method: METHODS.GET,
       },
@@ -33,9 +39,8 @@ class HTTPTransport {
 
   post: HTTPMethod = (url, options = {}) => (
     this.request(
-      url,
+      this.endpoint + url,
       {
-        ...options,
         data: JSON.stringify(options.data),
         method: METHODS.POST,
       },
@@ -45,9 +50,8 @@ class HTTPTransport {
 
   put: HTTPMethod = (url, options = {}) => (
     this.request(
-      url,
+      this.endpoint + url,
       {
-        ...options,
         data: JSON.stringify(options.data),
         method: METHODS.PUT,
       },
@@ -57,9 +61,8 @@ class HTTPTransport {
 
   delete: HTTPMethod = (url, options = {}) => (
     this.request(
-      url,
+      this.endpoint + url,
       {
-        ...options,
         data: null,
         method: METHODS.DELETE,
       },
@@ -67,11 +70,11 @@ class HTTPTransport {
     )
   );
 
-  request = (
+  request = <Response>(
     url: string,
     options: { method: string, data?: string | null } = { method: METHODS.GET },
     timeout = 5000,
-  ): Promise<unknown> => {
+  ): Promise<Response> => {
     const { method, data } = options;
 
     if (method === METHODS.GET && data) {
@@ -81,16 +84,29 @@ class HTTPTransport {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open(method, url);
-
+      //xhr.open(method, this.apiURL + '/auth/logout');
       xhr.timeout = timeout;
 
-      xhr.onload = function () {
-        resolve(xhr);
-      };
+      xhr.onreadystatechange = (e) => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          let resp = {responceFrom: url, status: xhr.status}
+          console.log(resp);
+          if (xhr.status < 400) {
+            resolve(xhr.response);
+          } else {
+            reject(xhr.response);
+          }
+        }
+      }
 
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.ontimeout = reject;
+
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
+            
 
       if (method === METHODS.GET || !data) {
         xhr.send();

@@ -84,18 +84,18 @@ class Block<Props extends Record<string, any> = any> {
 
   private _init() {
     this.init();
-
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   protected init() {
+    
   }
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
   }
 
-  componentDidMount() {
+  protected componentDidMount() {
   }
 
   public dispatchComponentDidMount() {
@@ -105,6 +105,7 @@ class Block<Props extends Record<string, any> = any> {
   }
 
   private _componentDidUpdate(oldProps?: Props, newProps?: Props) {
+    
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
@@ -130,6 +131,8 @@ class Block<Props extends Record<string, any> = any> {
     const fragment = this.render();
 
     const newElement = fragment.firstElementChild as HTMLElement;
+
+    this._removeEvents();
 
     if (this._element) {
       this._element.replaceWith(newElement);
@@ -190,11 +193,12 @@ class Block<Props extends Record<string, any> = any> {
   }
 
   show() {
-    this.getContent()!.style.display = 'block';
+    this.eventBus().emit(Block.EVENTS.INIT);
+    //this.getContent()!.style.display = 'block';
   }
 
   hide() {
-    this.getContent()!.style.display = 'none';
+    //this.getContent()!.style.display = 'none';
   }
 }
 

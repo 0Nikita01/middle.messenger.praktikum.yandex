@@ -1,4 +1,5 @@
-interface FormData {
+
+export interface FormData {
   [name: string]: string,
 }
 
@@ -38,8 +39,8 @@ export function checkingFieldValidation(input: HTMLInputElement, inputType: stri
   }
 }
 
-export function getValidFormData(event: any, ...names: string[]): FormData | null {
-  const data : FormData = {};
+export function getValidFormData<T>(event: any, ...names: string[]): T | null {
+  const data : T | any = {};
   const form = event.target;
 
   names.forEach((name: string) => {
@@ -47,7 +48,7 @@ export function getValidFormData(event: any, ...names: string[]): FormData | nul
   });
 
   const isValidData: boolean = Object.entries(data)
-    .reduce((acc, [name, value]) => (acc && InputsValidate(value, name)), true);
+    .reduce((acc, [name, value]) => (acc && InputsValidate(value as string, name)), true);
 
   return isValidData ? data : null;
 }
